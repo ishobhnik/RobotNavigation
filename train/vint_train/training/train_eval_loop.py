@@ -144,6 +144,8 @@ def train_eval_loop(
     # wandb.log({})
     # print()
 
+torch.cuda.empty_cache()
+
 def train_eval_loop_nomad(
     train_model: bool,
     model: nn.Module,

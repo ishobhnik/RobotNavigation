@@ -1179,5 +1179,3 @@ def visualize_diffusion_action_distribution(
     #     plt.close(fig)
     # if len(wandb_list) > 0 and use_wandb:
     #     wandb.log({f"{eval_type}_action_samples": wandb_list}, commit=False)
-
-
