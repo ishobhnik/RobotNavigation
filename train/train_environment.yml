@@ -27,9 +27,3 @@ dependencies:
   - lmdb 
   - vit-pytorch
   - positional-encodings
-
-
-
-  
-
-
