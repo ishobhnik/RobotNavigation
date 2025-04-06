@@ -1,4 +1,4 @@
-import wandb
+# import wandb
 import os
 import numpy as np
 import yaml
@@ -110,13 +110,13 @@ def _log_data(
     dist_label,
     goal_pos,
     dataset_index,
-    use_wandb,
+    # use_wandb,
     mode,
     use_latest,
-    wandb_log_freq=1,
+    # wandb_log_freq=1,
     print_log_freq=1,
     image_log_freq=1,
-    wandb_increment_step=True,
+    # wandb_increment_step=True,
 ):
     """
     Log data to wandb and print to console.
@@ -132,8 +132,8 @@ def _log_data(
             if i % print_log_freq == 0 and print_log_freq != 0:
                 print(f"(epoch {epoch}) {logger.full_name()} {logger.average()}")
 
-    if use_wandb and i % wandb_log_freq == 0 and wandb_log_freq != 0:
-        wandb.log(data_log, commit=wandb_increment_step)
+    # if use_wandb and i % wandb_log_freq == 0 and wandb_log_freq != 0:
+    #     wandb.log(data_log, commit=wandb_increment_step)
 
     if image_log_freq != 0 and i % image_log_freq == 0:
         visualize_dist_pred(
@@ -145,7 +145,7 @@ def _log_data(
             project_folder,
             epoch,
             num_images_log,
-            use_wandb=use_wandb,
+            # use_wandb=use_wandb,
         )
         visualize_traj_pred(
             to_numpy(obs_image),
@@ -159,7 +159,7 @@ def _log_data(
             project_folder,
             epoch,
             num_images_log,
-            use_wandb=use_wandb,
+            # use_wandb=use_wandb,
         )
 
 
@@ -175,10 +175,10 @@ def train(
     alpha: float = 0.5,
     learn_angle: bool = True,
     print_log_freq: int = 100,
-    wandb_log_freq: int = 10,
+    # wandb_log_freq: int = 10,
     image_log_freq: int = 1000,
     num_images_log: int = 8,
-    use_wandb: bool = True,
+    # use_wandb: bool = True,
     use_tqdm: bool = True,
 ):
     """
@@ -298,10 +298,10 @@ def train(
             dist_label=dist_label,
             goal_pos=goal_pos,
             dataset_index=dataset_index,
-            wandb_log_freq=wandb_log_freq,
+            # wandb_log_freq=wandb_log_freq,
             print_log_freq=print_log_freq,
             image_log_freq=image_log_freq,
-            use_wandb=use_wandb,
+            # use_wandb=use_wandb,
             mode="train",
             use_latest=True,
         )
@@ -319,7 +319,7 @@ def evaluate(
     alpha: float = 0.5,
     learn_angle: bool = True,
     num_images_log: int = 8,
-    use_wandb: bool = True,
+    # use_wandb: bool = True,
     eval_fraction: float = 1.0,
     use_tqdm: bool = True,
 
@@ -433,10 +433,10 @@ def evaluate(
         dist_pred=dist_pred,
         dist_label=dist_label,
         dataset_index=dataset_index,
-        use_wandb=use_wandb,
+        # use_wandb=use_wandb,
         mode=eval_type,
         use_latest=False,
-        wandb_increment_step=False,
+        # wandb_increment_step=False,
     )
 
     return dist_loss_logger.average(), action_loss_logger.average(), total_loss_logger.average()
@@ -535,10 +535,11 @@ def train_nomad(
     epoch: int,
     alpha: float = 1e-4,
     print_log_freq: int = 100,
-    wandb_log_freq: int = 10,
+    # wandb_log_freq: int = 10,
     image_log_freq: int = 1000,
     num_images_log: int = 8,
-    use_wandb: bool = True,
+    # use_wandb: bool = False,
+    config: Optional[Dict] = None,
 ):
     """
     Train the model for one epoch.
@@ -559,6 +560,10 @@ def train_nomad(
         num_images_log: number of images to log
         use_wandb: whether to use wandb
     """
+
+    if config is None:
+        config = {}
+
     goal_mask_prob = torch.clip(torch.tensor(goal_mask_prob), 0, 1)
     model.train()
     num_batches = len(dataloader)
@@ -666,9 +671,10 @@ def train_nomad(
             # Logging
             loss_cpu = loss.item()
             tepoch.set_postfix(loss=loss_cpu)
-            wandb.log({"total_loss": loss_cpu})
-            wandb.log({"dist_loss": dist_loss.item()})
-            wandb.log({"diffusion_loss": diffusion_loss.item()})
+            # if config.get("use_wandb", False):
+            #     wandb.log({"total_loss": loss_cpu})
+            #     wandb.log({"dist_loss": dist_loss.item()})
+            #     wandb.log({"diffusion_loss": diffusion_loss.item()})
 
 
             if i % print_log_freq == 0:
@@ -694,8 +700,8 @@ def train_nomad(
                     if i % print_log_freq == 0 and print_log_freq != 0:
                         print(f"(epoch {epoch}) (batch {i}/{num_batches - 1}) {logger.display()}")
 
-                if use_wandb and i % wandb_log_freq == 0 and wandb_log_freq != 0:
-                    wandb.log(data_log, commit=True)
+                # if use_wandb and i % wandb_log_freq == 0 and wandb_log_freq != 0:
+                #     wandb.log(data_log, commit=True)
 
             if image_log_freq != 0 and i % image_log_freq == 0:
                 visualize_diffusion_action_distribution(
@@ -714,7 +720,7 @@ def train_nomad(
                     epoch,
                     num_images_log,
                     30,
-                    use_wandb,
+                    # use_wandb,
                 )
 
 
@@ -729,11 +735,11 @@ def evaluate_nomad(
     project_folder: str,
     epoch: int,
     print_log_freq: int = 100,
-    wandb_log_freq: int = 10,
+    # wandb_log_freq: int = 10,
     image_log_freq: int = 1000,
     num_images_log: int = 8,
     eval_fraction: float = 0.25,
-    use_wandb: bool = True,
+    # use_wandb: bool = True,
 ):
     """
     Evaluate the model on the given evaluation dataset.
@@ -870,9 +876,9 @@ def evaluate_nomad(
             loss_cpu = rand_mask_loss.item()
             tepoch.set_postfix(loss=loss_cpu)
 
-            wandb.log({"diffusion_eval_loss (random masking)": rand_mask_loss})
-            wandb.log({"diffusion_eval_loss (no masking)": no_mask_loss})
-            wandb.log({"diffusion_eval_loss (goal masking)": goal_mask_loss})
+            # wandb.log({"diffusion_eval_loss (random masking)": rand_mask_loss})
+            # wandb.log({"diffusion_eval_loss (no masking)": no_mask_loss})
+            # wandb.log({"diffusion_eval_loss (goal masking)": goal_mask_loss})
 
             if i % print_log_freq == 0 and print_log_freq != 0:
                 losses = _compute_losses_nomad(
@@ -897,8 +903,8 @@ def evaluate_nomad(
                     if i % print_log_freq == 0 and print_log_freq != 0:
                         print(f"(epoch {epoch}) (batch {i}/{num_batches - 1}) {logger.display()}")
 
-                if use_wandb and i % wandb_log_freq == 0 and wandb_log_freq != 0:
-                    wandb.log(data_log, commit=True)
+                # if use_wandb and i % wandb_log_freq == 0 and wandb_log_freq != 0:
+                #     wandb.log(data_log, commit=True)
 
             if image_log_freq != 0 and i % image_log_freq == 0:
                 visualize_diffusion_action_distribution(
@@ -917,7 +923,7 @@ def evaluate_nomad(
                     epoch,
                     num_images_log,
                     30,
-                    use_wandb,
+                    # use_wandb,
                 )
 
 
@@ -1051,7 +1057,7 @@ def visualize_diffusion_action_distribution(
     epoch: int,
     num_images_log: int,
     num_samples: int = 30,
-    use_wandb: bool = True,
+    # use_wandb: bool = True,
 ):
     """Plot samples from the exploration model."""
 
@@ -1073,7 +1079,7 @@ def visualize_diffusion_action_distribution(
     batch_action_label = batch_action_label[:num_images_log]
     batch_goal_pos = batch_goal_pos[:num_images_log]
     
-    wandb_list = []
+    # wandb_list = []
 
     pred_horizon = batch_action_label.shape[1]
     action_dim = batch_action_label.shape[2]
@@ -1169,9 +1175,9 @@ def visualize_diffusion_action_distribution(
 
         save_path = os.path.join(visualize_path, f"sample_{i}.png")
         plt.savefig(save_path)
-        wandb_list.append(wandb.Image(save_path))
-        plt.close(fig)
-    if len(wandb_list) > 0 and use_wandb:
-        wandb.log({f"{eval_type}_action_samples": wandb_list}, commit=False)
+    #     wandb_list.append(wandb.Image(save_path))
+    #     plt.close(fig)
+    # if len(wandb_list) > 0 and use_wandb:
+    #     wandb.log({f"{eval_type}_action_samples": wandb_list}, commit=False)
 
 
