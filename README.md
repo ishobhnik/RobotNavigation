@@ -24,6 +24,15 @@ within a single architecture
 ![image](https://github.com/user-attachments/assets/b5e531c0-a6b0-4707-b335-f85aef93c979)
 
 ---
+
+## Model Architecture
+
+- **Encoder**: EfficientNet-B0
+- **Temporal Context**: Transformer with 4 layers and 4 heads
+- **Diffusion Decoder**: Conditional UNet1D
+- **Objective**: MSE between predicted noise and sampled noise, plus auxiliary temporal distance loss
+
+---
 ## Project Structure
 ```
 RobotNavigation/ 
@@ -36,16 +45,33 @@ RobotNavigation/
 ```
 ---
 ## Set up
-Download datasets:
+### Download datasets:
 - RECON :
 - SCAND :
 - go_stanford:
 - Sacson :
 
-clone this repo and setup the environment:
+### clone this repo and setup the environment:
 -We recommend to set up a conda env
 -run the following commands in terminal 
 ```bash
 conda env create -f train_environment.yml
 conda activate nomad_env
 ```
+---
+## Data Preprocesing
+First need to extract data from the .bag files.
+Then, split the extracted data into train and test set. Default ratio is 80-20.
+
+Run the following for example:
+```bash
+python train/data_split.py --data-dir go_stanford_extracted --dataset-name go_stanford
+```
+
+This creates a split inside:
+```
+train/vint_train/data/data_splits/go_stanford/
+```
+
+
+
