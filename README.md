@@ -32,3 +32,18 @@ RobotNavigation/
 │ ├── vint_train/ # Dataset, models, training utils 
 │ ├── requirements.txt
 │ └── README.md
+
+---
+## Set up
+Download datasets:
+- RECON :
+- SCAND :
+- go_stanford:
+- Sacson :
+
+Setup the environment:
+-We recommend to set up a conda env
+-run the following commands in terminal 
+
+conda env create -f train_environment.yml
+conda activate nomad_env
