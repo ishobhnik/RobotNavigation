@@ -1,4 +1,4 @@
-# import wandb
+import wandb
 import os
 import numpy as np
 from typing import List, Optional, Dict
@@ -16,6 +16,7 @@ from torchvision import transforms
 
 from diffusers.schedulers.scheduling_ddpm import DDPMScheduler
 from diffusers.training_utils import EMAModel
+# from diffusion_policy.diffusion_policy.model.diffusion.ema_model import EMAModel
 
 def train_eval_loop(
     train_model: bool,
@@ -29,14 +30,14 @@ def train_eval_loop(
     device: torch.device,
     project_folder: str,
     normalized: bool,
-    # wandb_log_freq: int = 10,
+    wandb_log_freq: int = 10,
     print_log_freq: int = 100,
     image_log_freq: int = 1000,
     num_images_log: int = 8,
     current_epoch: int = 0,
     alpha: float = 0.5,
     learn_angle: bool = True,
-    # use_wandb: bool = True,
+    use_wandb: bool = True,
     eval_fraction: float = 0.25,
 ):
     """
@@ -84,10 +85,10 @@ def train_eval_loop(
                 alpha=alpha,
                 learn_angle=learn_angle,
                 print_log_freq=print_log_freq,
-                # wandb_log_freq=wandb_log_freq,
+                wandb_log_freq=wandb_log_freq,
                 image_log_freq=image_log_freq,
                 num_images_log=num_images_log,
-                # use_wandb=use_wandb,
+                use_wandb=use_wandb,
             )
 
         avg_total_test_loss = []
@@ -109,7 +110,7 @@ def train_eval_loop(
                 alpha=alpha,
                 learn_angle=learn_angle,
                 num_images_log=num_images_log,
-                # use_wandb=use_wandb,
+                use_wandb=use_wandb,
                 eval_fraction=eval_fraction,
             )
 
@@ -123,7 +124,7 @@ def train_eval_loop(
             "scheduler": scheduler
         }
         # log average eval loss
-        # wandb.log({}, commit=False)
+        wandb.log({}, commit=False)
 
         if scheduler is not None:
             # scheduler calls based on the type of scheduler
@@ -131,20 +132,18 @@ def train_eval_loop(
                 scheduler.step(np.mean(avg_total_test_loss))
             else:
                 scheduler.step()
-        # wandb.log({
-        #     "avg_total_test_loss": np.mean(avg_total_test_loss),
-        #     "lr": optimizer.param_groups[0]["lr"],
-        # }, commit=False)
+        wandb.log({
+            "avg_total_test_loss": np.mean(avg_total_test_loss),
+            "lr": optimizer.param_groups[0]["lr"],
+        }, commit=False)
 
         numbered_path = os.path.join(project_folder, f"{epoch}.pth")
         torch.save(checkpoint, latest_path)
         torch.save(checkpoint, numbered_path)  # keep track of model at every epoch
 
     # Flush the last set of eval logs
-    # wandb.log({})
-    # print()
-
-torch.cuda.empty_cache()
+    wandb.log({})
+    print()
 
 def train_eval_loop_nomad(
     train_model: bool,
@@ -160,12 +159,12 @@ def train_eval_loop_nomad(
     device: torch.device,
     project_folder: str,
     print_log_freq: int = 100,
-    # wandb_log_freq: int = 10,
+    wandb_log_freq: int = 10,
     image_log_freq: int = 1000,
     num_images_log: int = 8,
     current_epoch: int = 0,
     alpha: float = 1e-4,
-    # use_wandb: bool = True,
+    use_wandb: bool = True,
     eval_fraction: float = 0.25,
     eval_freq: int = 1,
 ):
@@ -195,7 +194,7 @@ def train_eval_loop_nomad(
         eval_freq: frequency of evaluation
     """
     latest_path = os.path.join(project_folder, f"latest.pth")
-    ema_model = EMAModel(model=model,power=0.75)
+    ema_model = EMAModel(model=model, power=0.75)
     
     for epoch in range(current_epoch, current_epoch + epochs):
         if train_model:
@@ -214,10 +213,10 @@ def train_eval_loop_nomad(
                 project_folder=project_folder,
                 epoch=epoch,
                 print_log_freq=print_log_freq,
-                # wandb_log_freq=wandb_log_freq,
+                wandb_log_freq=wandb_log_freq,
                 image_log_freq=image_log_freq,
                 num_images_log=num_images_log,
-                # use_wandb=use_wandb,
+                use_wandb=use_wandb,
                 alpha=alpha,
             )
             lr_scheduler.step()
@@ -261,28 +260,28 @@ def train_eval_loop_nomad(
                     epoch=epoch,
                     print_log_freq=print_log_freq,
                     num_images_log=num_images_log,
-                    # wandb_log_freq=wandb_log_freq,
-                    # use_wandb= False,
+                    wandb_log_freq=wandb_log_freq,
+                    use_wandb=use_wandb,
                     eval_fraction=eval_fraction,
                 )
-    #     wandb.log({
-    #         "lr": optimizer.param_groups[0]["lr"],
-    #     }, commit=False)
+        wandb.log({
+            "lr": optimizer.param_groups[0]["lr"],
+        }, commit=False)
 
-    #     if lr_scheduler is not None:
-    #         lr_scheduler.step()
+        if lr_scheduler is not None:
+            lr_scheduler.step()
 
-    #     # log average eval loss
-    #     wandb.log({}, commit=False)
+        # log average eval loss
+        wandb.log({}, commit=False)
 
-    #     wandb.log({
-    #         "lr": optimizer.param_groups[0]["lr"],
-    #     }, commit=False)
+        wandb.log({
+            "lr": optimizer.param_groups[0]["lr"],
+        }, commit=False)
 
         
-    # # Flush the last set of eval logs
-    # wandb.log({})
-    # print()
+    # Flush the last set of eval logs
+    wandb.log({})
+    print()
 
 def load_model(model, model_type, checkpoint: dict) -> None:
     """Load model from checkpoint."""
@@ -312,6 +311,7 @@ def count_parameters(model):
         params = parameter.numel()
         table.add_row([name, params])
         total_params+=params
-    # print(table)
+    print(table)
     print(f"Total Trainable Params: {total_params/1e6:.2f}M")
     return total_params
+

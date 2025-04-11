@@ -1,5 +1,5 @@
 import os
-# import wandb
+import wandb
 import argparse
 import numpy as np
 import yaml
@@ -25,7 +25,7 @@ from vint_train.models.vint.vint import ViNT
 from vint_train.models.vint.vit import ViT
 from vint_train.models.nomad.nomad import NoMaD, DenseNetwork
 from vint_train.models.nomad.nomad_vint import NoMaD_ViNT, replace_bn_with_gn
-from diffusion_policy.model.diffusion.conditional_unet1d import ConditionalUnet1D
+from diffusion_policy.diffusion_policy.model.diffusion.conditional_unet1d import ConditionalUnet1D
 
 
 from vint_train.data.vint_dataset import ViNT_Dataset
@@ -257,7 +257,7 @@ def main(config):
                 base_lr=lr / 10.,
                 max_lr=lr,
                 step_size_up=config["cyclic_period"] // 2,
-                cycle_momentum=False,
+                cycle_momentum=False, 
             )
         elif config["scheduler"] == "plateau":
             print("Using ReduceLROnPlateau")
@@ -319,7 +319,7 @@ def main(config):
             current_epoch=current_epoch,
             learn_angle=config["learn_angle"],
             alpha=config["alpha"],
-            # use_wandb=config["use_wandb"],
+            use_wandb=config["use_wandb"],
             eval_fraction=config["eval_fraction"],
         )
     else:
@@ -337,12 +337,12 @@ def main(config):
             device=device,
             project_folder=config["project_folder"],
             print_log_freq=config["print_log_freq"],
-            # wandb_log_freq=config["wandb_log_freq"],
+            wandb_log_freq=config["wandb_log_freq"],
             image_log_freq=config["image_log_freq"],
             num_images_log=config["num_images_log"],
             current_epoch=current_epoch,
             alpha=float(config["alpha"]),
-            # use_wandb=config["use_wandb"],
+            use_wandb=config["use_wandb"],
             eval_fraction=config["eval_fraction"],
             eval_freq=config["eval_freq"],
         )
@@ -385,18 +385,18 @@ if __name__ == "__main__":
         ],  # should error if dir already exists to avoid overwriting and old project
     )
 
-    # if config["use_wandb"]:
-    #     wandb.login()
-    #     wandb.init(
-    #         project=config["project_name"],
-    #         settings=wandb.Settings(start_method="fork"),
-    #         entity="gnmv2", # TODO: change this to your wandb entity
-    #     )
-    #     wandb.save(args.config, policy="now")  # save the config file
-    #     wandb.run.name = config["run_name"]
-    #     # update the wandb args with the training configurations
-    #     if wandb.run:
-    #         wandb.config.update(config)
+    if config["use_wandb"]:
+        wandb.login()
+        wandb.init(
+             project=config["project_name"],
+            settings=wandb.Settings(start_method="fork"),
+            entity="ishobhnik-indian-institute-of-science", # TODO: change this to your wandb entity
+        )
+        wandb.save(args.config, policy="now")  # save the config file
+        wandb.run.name = config["run_name"]
+        # update the wandb args with the training configurations
+        if wandb.run:
+            wandb.config.update(config)
 
     print(config)
     main(config)

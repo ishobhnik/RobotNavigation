@@ -2,10 +2,11 @@ project_name: nomad
 run_name: nomad
 
 # training setup
-# use_wandb: False # set to false if you don't want to log to wandb
+use_wandb: True # set to false if you don't want to log to wandb
 train: True
-batch_size: 32
-epochs: 100
+batch_size: 47
+eval_batch_size: 2
+epochs: 10
 gpu_ids: [0]
 num_workers: 12
 lr: 1e-4
@@ -68,10 +69,17 @@ datasets:
     end_slack: 3 # because many trajectories end in collisions
     goals_per_obs: 1
     negative_mining: True
+  recon:
+    data_folder: /home/shobhnikk/Downloads/Robot Naviagtion/Code/nomad_data/blobs/sha256/454e998a0f5d6b3c9e377fda91bbea85351f2b14830a921598280535cdc97d35 (1)/root/RECON/recon_dataset
+    train: /home/<username>/data_splits/recon/train/ # path to train folder with traj_names.txt
+    test: /home/<username>/data_splits/recon/test/ # path to test folder with traj_names.txt
+    end_slack: 3 # because many trajectories end in collisions
+    goals_per_obs: 1 # how many goals are sampled per observation
+    negative_mining: True # negative mining from the ViNG paper (Shah et al.)
 print_log_freq: 100 # in iterations
 image_log_freq: 1000 #0 # in iterations
 num_images_log: 8 #0 
 pairwise_test_freq: 0 # in epochs
 eval_fraction: 0.25
-# wandb_log_freq: 10 # in iterations
+wandb_log_freq: 10 # in iterations
 eval_freq: 1 # in epochs

@@ -59,16 +59,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "--data-dir", "-i", help="/home/shobhnikk/Downloads/RobotNavigation/Data/sacson", required=True
+        "--data-dir", "-i", help="/home/shobhnikk/Downloads/Robot Naviagtion/Code/nomad_data/blobs/sha256/454e998a0f5d6b3c9e377fda91bbea85351f2b14830a921598280535cdc97d35 (1)/root/RECON/recon_dataset/ExtractedData", required=True
     )
     parser.add_argument(
-        "--dataset-name", "-d", help="sacson", required=True
+        "--dataset-name", "-d", help="recon", required=True
     )
     parser.add_argument(
         "--split", "-s", type=float, default=0.8, help="Train/test split (default: 0.8)"
     )
     parser.add_argument(
-        "--data-splits-dir", "-o", default="/home/shobhnikk/Downloads/RobotNavigation/Data/SplitData", help="/home/shobhnikk/Downloads/RobotNavigation/Data/SplitData"
+        "--data-splits-dir", "-o", default="/home/shobhnikk/Downloads/Robot Naviagtion/Code/nomad_data/blobs/sha256/454e998a0f5d6b3c9e377fda91bbea85351f2b14830a921598280535cdc97d35 (1)/root/RECON/recon_dataset", help="/home/shobhnikk/Downloads/Robot Naviagtion/Code/nomad_data/blobs/sha256/454e998a0f5d6b3c9e377fda91bbea85351f2b14830a921598280535cdc97d35 (1)/root/RECON/recon_dataset"
     )
     args = parser.parse_args()
     main(args)
