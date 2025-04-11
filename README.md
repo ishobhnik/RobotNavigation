@@ -25,6 +25,7 @@ within a single architecture
 
 ---
 ## Project Structure
+```
 RobotNavigation/ 
 │ ├── train/ # Training scripts and utilities 
 │ ├── train.py # Entry point for training 
@@ -32,7 +33,7 @@ RobotNavigation/
 │ ├── vint_train/ # Dataset, models, training utils 
 │ ├── requirements.txt
 │ └── README.md
-
+```
 ---
 ## Set up
 Download datasets:
@@ -41,9 +42,10 @@ Download datasets:
 - go_stanford:
 - Sacson :
 
-Setup the environment:
+clone this repo and setup the environment:
 -We recommend to set up a conda env
 -run the following commands in terminal 
-
+```bash
 conda env create -f train_environment.yml
 conda activate nomad_env
+```
