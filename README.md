@@ -11,7 +11,7 @@
 
 This github repository presents our work on implementing and analyzing the training and
 perception components of a visual navigation system based on diffusion policies, as
-adapted from the NOMAD (Navigation with Goal Masked Diffusion) framework.
+adapted from the NoMaD (Navigation with Goal Masked Diffusion) framework.
 
 Robotic learning for navigation in unfamiliar environments requires the ability to perform
 both task-oriented navigation (i.e., reaching a known goal) and task-agnostic exploration
@@ -78,11 +78,11 @@ RobotNavigation/
 ---
 ## Set up
 ### Download datasets:
-- RECON :
-- SCAND :
-- go_stanford:
-- Sacson :
-- tartan_drive:
+- [RECON:]([https://example.com](https://sites.google.com/view/recon-robot/dataset))
+- [SCAND:]([[https://example.com](https://sites.google.com/view/recon-robot/dataset](https://dataverse.tdl.org/dataset.xhtml;jsessionid=9ae3e11dc37889cbad1f22554a53?persistentId=doi%3A10.18738%2FT8%2F0PRYRH&version=&q=&fileTypeGroupFacet=%22Unknown%22&fileAccess=&fileTag=&fileSortField=&fileSortOrder=&tagPresort=false&folderPresort=true)))
+- [go_stanford:]([[https://example.com](https://sites.google.com/view/recon-robot/dataset](https://drive.google.com/drive/folders/1RYseCpbtHEFOsmSX2uqNY_kvSxwZLVP_)))
+- [Sacson/HuRoN:]([[https://example.com](https://sites.google.com/view/recon-robot/dataset](https://sites.google.com/view/sacson-review/huron-dataset)))
+- [tartan_drive:]([[https://example.com](https://sites.google.com/view/recon-robot/dataset](https://github.com/castacks/tartan_drive)))
 
 ### clone this repo and setup the environment:
 - We recommend to set up a conda env for which run the following commands in terminal 
