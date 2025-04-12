@@ -193,11 +193,7 @@ During training, we use a goal masking probability of p_m = 0.5, meaning:
 - Half ignore goals (pure exploration)
 
 ## Some important visualisations from wandb depicting our Losses and how our model achieving accuracy
-
-----------
 -----------
------------
-
 ##  Nomad vs other Baselines(Masked ViNT,ViB,AutoRegressive, Random Subgoals,Subgoal Diffusion) ,and how nomad outperforms all baselines
 
 
