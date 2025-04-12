@@ -1,7 +1,7 @@
 ## Authors
 
 - Abhishek kumar Jha
-- Shobnik kriplani
+- Shobhnik kriplani
 - Sehaj Ganjoo
 - Namashivaaya V.
 
