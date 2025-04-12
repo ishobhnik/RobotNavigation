@@ -188,12 +188,12 @@ This loss function optimizes for two objectives:
 
 ### Training Strategy: Goal Masking
 
-During training, we use a goal masking probability of p_m = 0.5, meaning:
+During training, we use a goal masking probability of Pm = 0.5, meaning:
 - Half the training samples use goal images (goal-reaching)
 - Half ignore goals (pure exploration)
 
 ## Some important visualisations from wandb depicting our Losses and how our model achieving accuracy
-##  Nomad vs Masked ViNT
+##  Nomad vs Other BAselines
 
 ### Unified Policy for Navigation and Exploration
 - **NoMaD**: Single unified diffusion policy handles both behaviors
