@@ -199,12 +199,6 @@ During training, we use a goal masking probability of p_m = 0.5, meaning:
 - Half the training samples use goal images (goal-reaching)
 - Half ignore goals (pure exploration)
 
-## Losses Per Epoch and Model Evaluation
-
--------------
--------------
--------------
-
 ## Some important visualisations from wandb depicting our Losses and how our model achieving accuracy
 
 ----------
@@ -233,7 +227,8 @@ During training, we use a goal masking probability of p_m = 0.5, meaning:
 - **NoMaD**: Fewer collisions with smaller model size
 - **Others**: Often need larger models or complex planners
 
-
+### NoMaD vs ViNT
+- ADD GRAPHS
 ---
 
 ## Acknowledgements
