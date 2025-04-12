@@ -173,15 +173,21 @@ PYTHONPATH=.  python train/train.py -c train/config/nomad.yaml
 
 ## Loss Function
 
-NoMaD is trained end-to-end with supervised learning using the following loss function:
+The NoMaD model is trained using a combination of diffusion loss and temporal distance prediction loss. The total training objective is given by:
+```math
+\mathcal{L}_{\text{NoMaD}}(\phi, \psi, f, \theta, f_n) = \text{MSE}(\varepsilon_k, \varepsilon_{\theta}(c_t, a_t^0 + \varepsilon_k, k)) + \lambda \cdot \text{MSE}(d(o_t, o_g), f_n(c_t))
+```
 
-ℒₙₒₘₐ𝒹(ϕ, ψ, f, θ, fₙ) = MSE(εₖ, εₚ(εₜ, a⁰ₜ + εₖ, k)) + λ ⋅ MSE(d(oₜ, o₉), fₙ(cₜ))
-Where:  
-- ϕ, ψ → Visual encoders for observation and goal images  
-- f → Transformer model
-- θ → Parameters of the diffusion process 
-- fₙ → Temporal distance predictor
-- λ = 10⁻⁴ → Hyperparameter for auxiliary loss weight
+Where:
+- $\phi$, $\psi$ are visual encoders for observation and goal images
+- $f$ is the Transformer encoder
+- $\theta$ are the parameters of the diffusion model
+- $f_n$ is the temporal distance predictor
+- $\lambda$ is a weighting coefficient
+- $\varepsilon_k$ is noise sampled from $\mathcal{N}(0, I)$
+- $c_t$ is the encoded context
+- $a_t^0$ is the clean action at time $t$
+- $d(o_t, o_g)$ is the temporal distance between observation and goal
 
 This loss function optimizes for two objectives:  
 1. **Noise prediction** — Ensures the diffusion model can accurately predict the noise injected in the input actions  
