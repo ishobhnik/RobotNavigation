@@ -28,7 +28,7 @@ within a single architecture
 **NoMaD** combines:
 - Goal Masking strategy which enables flexible conditioning on optional goal images
 - EfficientNet-based encoders for image observations
-- A Viual Navigation Transformer (ViNT) backbone for temporal modeling
+- A Visual Navigation Transformer (ViNT) backbone for temporal modeling
 - A Diffusion-based decoder for multi-step action prediction
   
 ![image](https://github.com/user-attachments/assets/b5e531c0-a6b0-4707-b335-f85aef93c979)
