@@ -101,7 +101,7 @@ pip install -e diffusion_policy/
 ```
 ---
 ## Data Preprocessing
-- First need to extract data from the .bag files(for SCAND).
+- First need to extract data from the .bag files(for SCAND and RECON).
 
 - Run process_bags.py with the relevant args, or process_recon.py for processing RECON HDF5s.
 
@@ -193,7 +193,7 @@ During training, we use a goal masking probability of p_m = 0.5, meaning:
 - Half the training samples use goal images (goal-reaching)
 - Half ignore goals (pure exploration)
 
-## Losses Per Epoch(add values yourself) and Model Evaluation
+## Losses Per Epoch and Model Evaluation
 
 -------------
 -------------
@@ -234,21 +234,17 @@ During training, we use a goal masking probability of p_m = 0.5, meaning:
 
 We extend our sincere gratitude to:
 
-- **Adith Muralidharan** (Teaching Assistant, UMC 203 at IISc and RBCCPS student) for his unwavering technical and emotional support throughout this project.
+- **Adith Muralidharan** (Teaching Assistant, UMC 203) for his unwavering technical support throughout this project.
 
-- **Professor Chiranjib Bhattacharyya** and **Professor N.Y.K. Shishir** for providing the opportunity to explore this topic through a graded term-paper in their course.
+- **Professor N.Y.K. Shishir** and **Professor Chiranjib Bhattacharyya** for providing the opportunity to explore this topic through a graded term-paper in their course.
 
 ## Code & Research References
 This work builds upon several foundational resources:
 - Code adapted from **[visualnav-transformer](https://github.com/robodhruv/visualnav-transformer.git)**
 - Research papers:
-  - [ViNT: Visual Navigation Transformer](https://arxiv.org/abs/2306.14846) (Backbone for NoMaD)
+  - [ViNT: Visual Navigation Transformer](https://arxiv.org/abs/2306.14846) (Backbone of NoMaD)
   - [Vision Transformers (ViT)](https://arxiv.org/abs/2010.11929)
   - [EfficientNet](https://arxiv.org/abs/1905.11946)
   - [DiffusionPolicy](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://arxiv.org/abs/2303.04137)
 
 ---
-
-
-
-
