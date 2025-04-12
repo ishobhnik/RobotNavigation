@@ -216,96 +216,26 @@ During training, we use a goal masking probability of p_m = 0.5, meaning:
 - **Others**: Often need larger models or complex planners
 
 ### NoMaD (goal conditioned) vs ViNT
+Total Loss
+<div style="display: flex; gap: 10px;"> <div> <b>ViNT</b><br> <img src="https://github.com/user-attachments/assets/642ea7d5-5e1f-419d-9441-7e570dfb1744" width="400"> </div> <div> <b>NoMaD</b><br> <img src="https://github.com/user-attachments/assets/6bebcbfb-22cd-47d4-8f4e-235e63f6a733" width="400"> </div> </div>
+For Training
+<div style="display: flex; gap: 10px;"> <div> <b>ViNT</b><br> <img src="https://github.com/user-attachments/assets/83e4e442-2798-4a72-a10a-59b1491ab1bd" width="400"> </div> <div> <b>NoMaD</b><br> <img src="https://github.com/user-attachments/assets/b2bb7cd6-cedb-4adb-b32d-8ac56adbd9d5" width="400"> </div> </div>
+For Test
+<div style="display: flex; gap: 10px;"> <div> <b>ViNT</b><br> <img src="https://github.com/user-attachments/assets/0d5fecb7-a904-4e22-ba73-93d75bdea347" width="400"> </div> <div> <b>NoMaD</b><br> <img src="https://github.com/user-attachments/assets/e8cf3fdb-d2f7-413c-a834-7821a66a6284" width="400"> </div> </div>
+Action Loss
+Training
 
-#### Total Loss:
-<div style="display: flex; gap: 10px;">
-  <div>
-    <b>ViNT</b><br>
-    <img src="https://github.com/user-attachments/assets/642ea7d5-5e1f-419d-9441-7e570dfb1744" width="400">
-  </div>
-  <div>
-    <b>NoMaD</b><br>
-    <img src="https://github.com/user-attachments/assets/6bebcbfb-22cd-47d4-8f4e-235e63f6a733" width="400">
-  </div>
-</div>
+<div style="display: flex; gap: 10px;"> <div> <b>ViNT</b><br> <img src="https://github.com/user-attachments/assets/22e494eb-2141-4807-88e4-542d9a619af6" width="400"> </div> <div> <b>NoMaD</b><br> <img src="https://github.com/user-attachments/assets/94482246-2ce4-425b-a33e-d87396a4a158" width="400"> </div> </div>
+Test
 
-#### For Training:
-<div style="display: flex; gap: 10px;">
-  <div>
-    <b>ViNT</b><br>
-    <img src="https://github.com/user-attachments/assets/83e4e442-2798-4a72-a10a-59b1491ab1bd" width="400">
-  </div>
-  <div>
-    <b>NoMaD</b><br>
-    <img src="https://github.com/user-attachments/assets/b2bb7cd6-cedb-4adb-b32d-8ac56adbd9d5" width="400">
-  </div>
-</div>
+<div style="display: flex; gap: 10px;"> <div> <b>ViNT</b><br> <img src="https://github.com/user-attachments/assets/cf5cc286-39d1-4c26-8a2b-f26df0a288ce" width="400"> </div> <div> <b>NoMaD</b><br> <img src="https://github.com/user-attachments/assets/df87ecf4-69cd-4cf5-9c9a-17436ad893bc" width="400"> </div> </div>
+Multi-action Waypoints Cosine Similarity
+Training
 
-#### For Test:
-<div style="display: flex; gap: 10px;">
-  <div>
-    <b>ViNT</b><br>
-    <img src="https://github.com/user-attachments/assets/0d5fecb7-a904-4e22-ba73-93d75bdea347" width="400">
-  </div>
-  <div>
-    <b>NoMaD</b><br>
-    <img src="https://github.com/user-attachments/assets/e8cf3fdb-d2f7-413c-a834-7821a66a6284" width="400">
-  </div>
-</div>
+<div style="display: flex; gap: 10px;"> <div> <b>ViNT</b><br> <img src="https://github.com/user-attachments/assets/4c80c311-ed25-474a-ab9b-afc45e34885f" width="400"> </div> <div> <b>NoMaD</b><br> <img src="https://github.com/user-attachments/assets/47f97940-cc2a-412c-9067-41cab18ab905" width="400"> </div> </div>
+Test
 
-#### Action Loss
-
-##### For Training:
-<div style="display: flex; gap: 10px;">
-  <div>
-    <b>ViNT</b><br>
-    <img src="https://github.com/user-attachments/assets/22e494eb-2141-4807-88e4-542d9a619af6" width="400">
-  </div>
-  <div>
-    <b>NoMaD</b><br>
-    <img src="https://github.com/user-attachments/assets/94482246-2ce4-425b-a33e-d87396a4a158" width="400">
-  </div>
-</div>
-
-##### For Test:
-<div style="display: flex; gap: 10px;">
-  <div>
-    <b>ViNT</b><br>
-    <img src="https://github.com/user-attachments/assets/cf5cc286-39d1-4c26-8a2b-f26df0a288ce" width="400">
-  </div>
-  <div>
-    <b>NoMaD</b><br>
-    <img src="https://github.com/user-attachments/assets/df87ecf4-69cd-4cf5-9c9a-17436ad893bc" width="400">
-  </div>
-</div>
-
-#### Multi-action Waypoints Cosine Similarity
-
-##### For Training:
-<div style="display: flex; gap: 10px;">
-  <div>
-    <b>ViNT</b><br>
-    <img src="https://github.com/user-attachments/assets/4c80c311-ed25-474a-ab9b-afc45e34885f" width="400">
-  </div>
-  <div>
-    <b>NoMaD</b><br>
-    <img src="https://github.com/user-attachments/assets/47f97940-cc2a-412c-9067-41cab18ab905" width="400">
-  </div>
-</div>
-
-##### For Test:
-<div style="display: flex; gap: 10px;">
-  <div>
-    <b>ViNT</b><br>
-    <img src="https://github.com/user-attachments/assets/2a092199-7f53-4ebb-a771-e2d160be0e09" width="400">
-  </div>
-  <div>
-    <b>NoMaD</b><br>
-    <img src="https://github.com/user-attachments/assets/30d12d95-fc20-4242-957c-5f4740f99041" width="400">
-  </div>
-</div>
-
-
+<div style="display: flex; gap: 10px;"> <div> <b>ViNT</b><br> <img src="https://github.com/user-attachments/assets/2a092199-7f53-4ebb-a771-e2d160be0e09" width="400"> </div> <div> <b>NoMaD</b><br> <img src="https://github.com/user-attachments/assets/30d12d95-fc20-4242-957c-5f4740f99041" width="400"> </div> </div>
 ---
 ## Acknowledgements
 
