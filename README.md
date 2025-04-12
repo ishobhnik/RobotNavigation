@@ -206,7 +206,7 @@ During training, we use a goal masking probability of p_m = 0.5, meaning:
 -----------
 
 ##  Nomad vs other Baselines(Masked ViNT,ViB,AutoRegressive, Random Subgoals,Subgoal Diffusion) ,and how nomad outperforms all baselines
-![image](https://github.com/user-attachments/assets/450aaf61-07ed-4a3a-bbd7-3aa4ca13e9e7)
+
 
 ### Unified Policy for Navigation and Exploration
 - **NoMaD**: Single unified diffusion policy handles both behaviors
