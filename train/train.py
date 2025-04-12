@@ -390,7 +390,7 @@ if __name__ == "__main__":
         wandb.init(
              project=config["project_name"],
             settings=wandb.Settings(start_method="fork"),
-            entity="ishobhnik-indian-institute-of-science", # TODO: change this to your wandb entity
+            entity="Shobhnik", # TODO: change this to your wandb entity
         )
         wandb.save(args.config, policy="now")  # save the config file
         wandb.run.name = config["run_name"]
