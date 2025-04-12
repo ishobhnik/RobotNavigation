@@ -233,8 +233,8 @@ Training
 <table> <tr> <td><b>ViNT</b><br><img src="https://github.com/user-attachments/assets/4c80c311-ed25-474a-ab9b-afc45e34885f" width="400"></td> <td><b>NoMaD</b><br><img src="https://github.com/user-attachments/assets/47f97940-cc2a-412c-9067-41cab18ab905" width="400"></td> </tr> </table>
 Test
 <table> <tr> <td><b>ViNT</b><br><img src="https://github.com/user-attachments/assets/2a092199-7f53-4ebb-a771-e2d160be0e09" width="400"></td> <td><b>NoMaD</b><br><img src="https://github.com/user-attachments/assets/30d12d95-fc20-4242-957c-5f4740f99041" width="400"></td> </tr> </table>
----
-### Acknowledgements
+
+## Acknowledgements
 
 We extend our sincere gratitude to:
 
