@@ -88,9 +88,9 @@ RobotNavigation/
 - We recommend to set up a conda env for which run the following commands in terminal 
 ```bash
 conda env create -f train/train_environment.yml  
-conda activate nomad_env
+conda activate nomad_train 
 ```
-- We recommend to install the vint_train packages
+- We recommend to install the nomad_train packages
 ```bash
 pip install -e train/
 ```
