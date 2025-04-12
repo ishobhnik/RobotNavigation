@@ -21,12 +21,12 @@ ules, or distinct navigation strategies for exploration and goal-reaching
 
 The NoMaD (Navigation with Goal-Masked Diffusion) framework introduces a unified visual
 navigation policy capable of both :
-i) goal-conditioned navigation and 
-ii) open-ended exploration
+- goal-conditioned navigation and 
+- open-ended exploration
 within a single architecture
 
 **NoMaD** combines:
--Goal Masking strategy which enables flexible conditioning on optional goal images
+- Goal Masking strategy which enables flexible conditioning on optional goal images
 - EfficientNet-based encoders for image observations
 - A Vision Transformer (ViNT) backbone for temporal modeling
 - A Diffusion-based decoder for multi-step action prediction
@@ -117,7 +117,7 @@ If you have downloaded the sacson and go_stanford dataset,  wthey will already  
         └── traj_data.pkl
 
 
-        
+
 Then, split the extracted data into train and test set. Default ratio is 80-20.
 
 Run the following for example:
