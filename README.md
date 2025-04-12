@@ -222,7 +222,7 @@ During training, we use a goal masking probability of p_m = 0.5, meaning:
 - **NoMaD**: Fewer collisions with smaller model size
 - **Others**: Often need larger models or complex planners
 
-### NoMaD vs ViNT
+### NoMaD(goal conditioned) vs ViNT
 Total Loss:
 -Vint
   ![distloss_vint](https://github.com/user-attachments/assets/642ea7d5-5e1f-419d-9441-7e570dfb1744)
@@ -231,8 +231,22 @@ Total Loss:
 For Training:
 - Vint
   ![dist_train_vint](https://github.com/user-attachments/assets/83e4e442-2798-4a72-a10a-59b1491ab1bd)
-- Nomad (goal-conditioned)
+- Nomad
   ![gc_dist_train_nomad](https://github.com/user-attachments/assets/b2bb7cd6-cedb-4adb-b32d-8ac56adbd9d5)
+For Test :
+- ViNT ![dist_vint_test](https://github.com/user-attachments/assets/0d5fecb7-a904-4e22-ba73-93d75bdea347)
+- NoMaD ![gc_dist_test_nomad](https://github.com/user-attachments/assets/e8cf3fdb-d2f7-413c-a834-7821a66a6284)
+
+#### Action Loss
+For Training:
+- Vint ![action_train_vint](https://github.com/user-attachments/assets/22e494eb-2141-4807-88e4-542d9a619af6)
+- NoMaD ![gc_action_train_nomad](https://github.com/user-attachments/assets/94482246-2ce4-425b-a33e-d87396a4a158)
+For Test:
+-ViNT ![action_test_vint](https://github.com/user-attachments/assets/cf5cc286-39d1-4c26-8a2b-f26df0a288ce)
+-NoMaD ![Uploading gc_action_test_nomad.png…]()
+
+
+
 
   
 ---
