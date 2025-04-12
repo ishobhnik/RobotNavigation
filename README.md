@@ -263,6 +263,7 @@ We extend our sincere gratitude to:
 This work builds upon several foundational resources:
 - Code adapted from **[visualnav-transformer](https://github.com/robodhruv/visualnav-transformer.git)**
 - Research papers:
+  - [NoMaD: Goal Masked Diffusion Policies for Navigation and Exploration](https://arxiv.org/pdf/2310.07896)
   - [ViNT: Visual Navigation Transformer](https://arxiv.org/abs/2306.14846) (Backbone of NoMaD)
   - [Vision Transformers (ViT)](https://arxiv.org/abs/2010.11929)
   - [EfficientNet](https://arxiv.org/abs/1905.11946)
