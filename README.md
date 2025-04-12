@@ -193,9 +193,7 @@ During training, we use a goal masking probability of p_m = 0.5, meaning:
 - Half ignore goals (pure exploration)
 
 ## Some important visualisations from wandb depicting our Losses and how our model achieving accuracy
------------
-##  Nomad vs other Baselines(Masked ViNT,ViB,AutoRegressive, Random Subgoals,Subgoal Diffusion) ,and how nomad outperforms all baselines
-
+##  Nomad vs Masked ViNT
 
 ### Unified Policy for Navigation and Exploration
 - **NoMaD**: Single unified diffusion policy handles both behaviors
@@ -250,12 +248,7 @@ For test:
 -NoMaD ![multiaction_test_nomad](https://github.com/user-attachments/assets/30d12d95-fc20-4242-957c-5f4740f99041)
 
 
-
-
-
-  
 ---
-
 ## Acknowledgements
 
 We extend our sincere gratitude to:
