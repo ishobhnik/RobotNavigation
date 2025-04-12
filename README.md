@@ -193,7 +193,7 @@ During training, we use a goal masking probability of Pm = 0.5, meaning:
 - Half ignore goals (pure exploration)
 
 ## Some important visualisations from wandb depicting our Losses and how our model achieving accuracy
-##  Nomad vs Other BAselines
+##  Nomad vs Other Baselines
 
 ### Unified Policy for Navigation and Exploration
 - **NoMaD**: Single unified diffusion policy handles both behaviors
