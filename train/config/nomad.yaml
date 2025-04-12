@@ -63,16 +63,16 @@ learn_angle: False
 image_size: [96, 96] # width, height
 datasets:
   sacson:
-    data_folder: "/home/shobhnikk/Downloads/RobotNavigation/Data/sacson"
-    train: "/home/shobhnikk/Downloads/RobotNavigation/Data/SplitData/sacson/train"
-    test: "/home/shobhnikk/Downloads/RobotNavigation/Data/SplitData/sacson/test"
+    data_folder: "ABC" #Add the Path of your sacson Dataset folder
+    train: "/home/<username>/data_splits/sacson/train/" # path to train folder with traj_names.txt which we get after splitting the data
+    test: "/home/<username>/data_splits/sacson/test/" # path to test folder with traj_names.txt which we get after splitting the data
     end_slack: 3 # because many trajectories end in collisions
     goals_per_obs: 1
     negative_mining: True
   recon:
-    data_folder: /home/shobhnikk/Downloads/Robot Naviagtion/Code/nomad_data/blobs/sha256/454e998a0f5d6b3c9e377fda91bbea85351f2b14830a921598280535cdc97d35 (1)/root/RECON/recon_dataset
-    train: /home/<username>/data_splits/recon/train/ # path to train folder with traj_names.txt
-    test: /home/<username>/data_splits/recon/test/ # path to test folder with traj_names.txt
+    data_folder: "ABC" #Add the Path of your sacson Dataset folder 
+    train: "/home/<username>/data_splits/recon/train/" # path to train folder with traj_names.txt which we get after splitting the data
+    test: "/home/<username>/data_splits/recon/test/" # path to test folder with traj_names.txt which we get after splitting the data
     end_slack: 3 # because many trajectories end in collisions
     goals_per_obs: 1 # how many goals are sampled per observation
     negative_mining: True # negative mining from the ViNG paper (Shah et al.)
