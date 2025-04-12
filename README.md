@@ -78,7 +78,6 @@ RobotNavigation/
 - [RECON](https://sites.google.com/view/recon-robot/dataset)
 - [SCAND](https://dataverse.tdl.org/dataset.xhtml?persistentId=doi%3A10.18738%2FT8%2F0PRYRH)
 - [Sacson/HuRoN](https://sites.google.com/view/sacson-review/huron-dataset)
-- 
 ### clone this repo and setup the environment:
 - We recommend to set up a conda env for which run the following commands in terminal 
 ```bash
