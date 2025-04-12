@@ -16,8 +16,8 @@ adapted from the NOMAD (Navigation with Goal Masked Diffusion) framework.
 Robotic learning for navigation in unfamiliar environments requires the ability to perform
 both task-oriented navigation (i.e., reaching a known goal) and task-agnostic exploration
 (i.e., searching for a goal in a novel environment). Traditionally, these functionalities are
-tackled by separate systems — for example, using subgoal proposals, explicit planning mod-
-ules, or distinct navigation strategies for exploration and goal-reaching
+tackled by separate systems — for example, using subgoal proposals, explicit planning 
+modules, or distinct navigation strategies for exploration and goal-reaching
 
 The NoMaD (Navigation with Goal-Masked Diffusion) framework introduces a unified visual
 navigation policy capable of both :
@@ -28,7 +28,7 @@ within a single architecture
 **NoMaD** combines:
 - Goal Masking strategy which enables flexible conditioning on optional goal images
 - EfficientNet-based encoders for image observations
-- A Vision Transformer (ViNT) backbone for temporal modeling
+- A Viual Navigation Transformer (ViNT) backbone for temporal modeling
 - A Diffusion-based decoder for multi-step action prediction
   
 ![image](https://github.com/user-attachments/assets/b5e531c0-a6b0-4707-b335-f85aef93c979)
@@ -100,7 +100,7 @@ git clone git@github.com:real-stanford/diffusion_policy.git
 pip install -e diffusion_policy/
 ```
 ---
-## Data Preprocesing
+## Data Preprocessing
 - First need to extract data from the .bag files(for SCAND).
 
 - Run process_bags.py with the relevant args, or process_recon.py for processing RECON HDF5s.
