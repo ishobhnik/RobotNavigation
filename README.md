@@ -78,19 +78,17 @@ RobotNavigation/
 ---
 ## Set up
 ### Download datasets:
-- [RECON:]([https://example.com](https://sites.google.com/view/recon-robot/dataset))
-- [SCAND:]([[https://example.com](https://sites.google.com/view/recon-robot/dataset](https://dataverse.tdl.org/dataset.xhtml;jsessionid=9ae3e11dc37889cbad1f22554a53?persistentId=doi%3A10.18738%2FT8%2F0PRYRH&version=&q=&fileTypeGroupFacet=%22Unknown%22&fileAccess=&fileTag=&fileSortField=&fileSortOrder=&tagPresort=false&folderPresort=true)))
-- [go_stanford:]([[https://example.com](https://sites.google.com/view/recon-robot/dataset](https://drive.google.com/drive/folders/1RYseCpbtHEFOsmSX2uqNY_kvSxwZLVP_)))
-- [Sacson/HuRoN:]([[https://example.com](https://sites.google.com/view/recon-robot/dataset](https://sites.google.com/view/sacson-review/huron-dataset)))
-- [tartan_drive:]([[https://example.com](https://sites.google.com/view/recon-robot/dataset](https://github.com/castacks/tartan_drive)))
-
+- [RECON](https://sites.google.com/view/recon-robot/dataset)
+- [SCAND](https://dataverse.tdl.org/dataset.xhtml?persistentId=doi%3A10.18738%2FT8%2F0PRYRH)
+- [Sacson/HuRoN](https://sites.google.com/view/sacson-review/huron-dataset)
+- 
 ### clone this repo and setup the environment:
 - We recommend to set up a conda env for which run the following commands in terminal 
 ```bash
 conda env create -f train/train_environment.yml  
 conda activate nomad_train 
 ```
-- We recommend to install the nomad_train packages
+- Install all the Dependencies
 ```bash
 pip install -e train/
 ```
@@ -105,7 +103,7 @@ pip install -e diffusion_policy/
 
 - Run process_bags.py with the relevant args, or process_recon.py for processing RECON HDF5s.
 
-- If you have downloaded the sacson and go_stanford dataset,they will already  be in the correct format but in the other datasets or custom datasets, make sure it follows the following structure:
+- If you have downloaded the sacson dataset, it's already in the correct format but in the other datasets or custom datasets, make sure it follows the following structure:
 - 
 ## Dataset Structure
 - `<dataset_name>/`
@@ -129,13 +127,11 @@ pip install -e diffusion_policy/
     - `T_N.jpg`
     - `traj_data.pkl`
 
-
-
 - Then, split the extracted data into train and test set. Default ratio is 80-20.
 
 Run the following for example:
 ```bash
-python train/data_split.py --data-dir go_stanford_extracted --dataset-name go_stanford
+python train/data_split.py --data-dir #path of Downloaded Dataset --dataset-name scand
 ```
 
 ## Data Split Output Structure
@@ -153,22 +149,19 @@ vint_release/train/vint_train/data/data_splits/
     - `traj_names.txt`
 ```
 
-
-
 ## Training the Model
 - Run this command now
 ```bash
-PYTHONPATH=.  python train/train.py -c train/config/nomad.yaml
+ python train/train.py -c train/config/nomad.yaml
 ```
 
 ### Training Configuration:
     - optimizer: adamw
     - lr: 1e-4
     - batch_size: 47
-    - epochs: 30
+    - epochs: 10
     - goal_mask_prob: 0.5
     - eval_freq: 1
-
 ---
 
 ## Loss Function
