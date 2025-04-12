@@ -223,7 +223,18 @@ During training, we use a goal masking probability of p_m = 0.5, meaning:
 - **Others**: Often need larger models or complex planners
 
 ### NoMaD vs ViNT
-- ADD GRAPHS
+Total Loss:
+-Vint
+  ![distloss_vint](https://github.com/user-attachments/assets/642ea7d5-5e1f-419d-9441-7e570dfb1744)
+- Nomad
+  ![totalloss_nomad](https://github.com/user-attachments/assets/6bebcbfb-22cd-47d4-8f4e-235e63f6a733)
+For Training:
+- Vint
+  ![dist_train_vint](https://github.com/user-attachments/assets/83e4e442-2798-4a72-a10a-59b1491ab1bd)
+- Nomad (goal-conditioned)
+  ![gc_dist_train_nomad](https://github.com/user-attachments/assets/b2bb7cd6-cedb-4adb-b32d-8ac56adbd9d5)
+
+  
 ---
 
 ## Acknowledgements
