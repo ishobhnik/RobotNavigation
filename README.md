@@ -150,7 +150,7 @@ vint_release/train/vint_train/data/data_splits/
   - `train/`
     - `traj_names.txt`
   - `test/`
-    - `traj_names.txt
+    - `traj_names.txt`
 ```
 
 
