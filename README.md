@@ -164,7 +164,8 @@ vint_release/train/vint_train/data/data_splits/
     - goal_mask_prob: 0.5
     - eval_freq: 1
     - num_diffusion_iters: 10
-    - $\lamda$ : 10^{-4}
+    - lamda : 1e-4
+    
 ---
 
 ## Loss Function
