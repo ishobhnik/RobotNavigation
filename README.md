@@ -55,6 +55,16 @@ within a single architecture
 5.   **Objective**: MSE between predicted noise and sampled noise, plus auxiliary temporal distance loss
 
 ---
+
+## Goal Masking Mechanism
+
+| Mode         | Mask Value | Behavior                   |
+|--------------|------------|----------------------------|
+| Exploration  | m=1        | Ignores goal image         |
+| Goal-Seeking | m=0        | Uses goal for conditioning |
+
+---
+
 ## Project Structure
 ```
 RobotNavigation/ 
@@ -75,8 +85,7 @@ RobotNavigation/
 - tartan_drive:
 
 ### clone this repo and setup the environment:
--We recommend to set up a conda env
--run the following commands in terminal 
+- We recommend to set up a conda env for which run the following commands in terminal 
 ```bash
 conda env create -f train/train_environment.yml  
 conda activate nomad_env
@@ -85,7 +94,7 @@ conda activate nomad_env
 ```bash
 pip install -e train/
 ```
--Install the diffusion_policy package
+- Install the diffusion_policy package
 ```bash
 git clone git@github.com:real-stanford/diffusion_policy.git
 pip install -e diffusion_policy/
@@ -98,26 +107,27 @@ pip install -e diffusion_policy/
 
 - If you have downloaded the sacson and go_stanford dataset,they will already  be in the correct format but in the other datasets or custom datasets, make sure it follows the following structure:
 - 
-├── <dataset_name>
-│   ├── <name_of_traj1>
-│   │   ├── 0.jpg
-│   │   ├── 1.jpg
-│   │   ├── ...
-│   │   ├── T_1.jpg
-│   │   └── traj_data.pkl
-│   ├── <name_of_traj2>
-│   │   ├── 0.jpg
-│   │   ├── 1.jpg
-│   │   ├── ...
-│   │   ├── T_2.jpg
-│   │   └── traj_data.pkl
-│   ...
-└── └── <name_of_trajN>
-    	├── 0.jpg
-    	├── 1.jpg
-    	├── ...
-        ├── T_N.jpg
-        └── traj_data.pkl
+## Dataset Structure
+- `<dataset_name>/`
+  - `<name_of_traj1>/`
+    - `0.jpg`
+    - `1.jpg`
+    - `...` (additional frame images)
+    - `T_1.jpg`
+    - `traj_data.pkl`
+  - `<name_of_traj2>/`
+    - `0.jpg`
+    - `1.jpg`
+    - `...` (additional frame images)
+    - `T_2.jpg`
+    - `traj_data.pkl`
+  - `...` (additional trajectories)
+  - `<name_of_trajN>/`
+    - `0.jpg`
+    - `1.jpg`
+    - `...` (additional frame images)
+    - `T_N.jpg`
+    - `traj_data.pkl`
 
 
 
@@ -128,10 +138,116 @@ Run the following for example:
 python train/data_split.py --data-dir go_stanford_extracted --dataset-name go_stanford
 ```
 
-This creates a split inside:
+## Data Split Output Structure
+-  After running data_split.py on your dataset folder with the relevant arguments, the processed split should be located inside:
+```bash 
+vint_release/train/vint_train/data/data_splits/
 ```
-train/vint_train/data/data_splits/go_stanford/
+
+- It will have the following structure now:
+```markdown
+- `<dataset_name>/`
+  - `train/`
+    - `traj_names.txt`
+  - `test/`
+    - `traj_names.txt`
+
+
+
+## Training the Model
+- Run this command now
+```bash
+PYTHONPATH=.  python train/train.py -c train/config/nomad.yaml
 ```
+
+### Training Configuration:
+    - optimizer: adamw
+    - lr: 1e-4
+    - batch_size: 47
+    - epochs: 30
+    - goal_mask_prob: 0.5
+    - eval_freq: 1
+
+---
+
+## Loss Function
+
+NoMaD is trained end-to-end with supervised learning using the following loss function:
+
+ℒₙₒₘₐ𝒹(ϕ, ψ, f, θ, fₙ) = MSE(εₖ, εₚ(εₜ, a⁰ₜ + εₖ, k)) + λ ⋅ MSE(d(oₜ, o₉), fₙ(cₜ))
+Where:  
+- ϕ, ψ → Visual encoders for observation and goal images  
+- f → Transformer model
+- θ → Parameters of the diffusion process 
+- fₙ → Temporal distance predictor
+- λ = 10⁻⁴ → Hyperparameter for auxiliary loss weight
+
+This loss function optimizes for two objectives:  
+1. **Noise prediction** — Ensures the diffusion model can accurately predict the noise injected in the input actions  
+2. **Temporal alignment** — Encourages the model to estimate how far the current observation is from the goal in time, improving both exploration and goal-reaching capabilities  
+
+### Training Strategy: Goal Masking
+
+During training, we use a goal masking probability of p_m = 0.5, meaning:
+- Half the training samples use goal images (goal-reaching)
+- Half ignore goals (pure exploration)
+
+## Losses Per Epoch(add values yourself) and Model Evaluation
+
+-------------
+-------------
+-------------
+
+## Some important visualisations from wandb depicting our Losses and how our model achieving accuracy
+
+----------
+-----------
+-----------
+
+##  Nomad vs other Baselines(Masked ViNT,ViB,AutoRegressive, Random Subgoals,Subgoal Diffusion) ,and how nomad outperforms all baselines
+
+### Unified Policy for Navigation and Exploration
+- **NoMaD**: Single unified diffusion policy handles both behaviors
+- **Others**: Typically require separate models for navigation vs exploration
+
+### Action Generation
+- **NoMaD**: Diffusion model decoder enables multi-modal predictions
+- **Others**: Often use autoregressive models with limited multi-modality
+
+### Goal Conditioning
+- **NoMaD**: Flexible goal masking mechanism
+- **Others**: Usually require separate models for different behaviors
+
+### Architecture
+- **NoMaD**: Large-scale Transformer trained on multi-robot data
+- **Others**: May use smaller architectures with limited generalization
+
+### Performance
+- **NoMaD**: Fewer collisions with smaller model size
+- **Others**: Often need larger models or complex planners
+
+
+---
+
+## Acknowledgements
+
+We extend our sincere gratitude to:
+
+- **Adith Muralidharan** (Teaching Assistant, UMC 203 at IISc and RBCCPS student) for his unwavering technical and emotional support throughout this project.
+
+- **Professor Chiranjib Bhattacharyya** and **Professor N.Y.K. Shishir** for providing the opportunity to explore this topic through a graded term-paper in their course.
+
+## Code & Research References
+This work builds upon several foundational resources:
+- Code adapted from **[visualnav-transformer](https://github.com/robodhruv/visualnav-transformer.git)**
+- Research papers:
+  - [ViNT: Visual Navigation Transformer](https://arxiv.org/abs/2306.14846) (Backbone for NoMaD)
+  - [Vision Transformers (ViT)](https://arxiv.org/abs/2010.11929)
+  - [EfficientNet](https://arxiv.org/abs/1905.11946)
+  - [DiffusionPolicy](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://arxiv.org/abs/2303.04137)
+
+---
+
 
 
 
