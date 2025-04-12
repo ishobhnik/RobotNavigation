@@ -92,9 +92,12 @@ pip install -e diffusion_policy/
 ```
 ---
 ## Data Preprocesing
-First need to extract data from the .bag files(for SCAND).
-Run process_bags.py with the relevant args, or process_recon.py for processing RECON HDF5s.
-If you have downloaded the sacson and go_stanford dataset,  wthey will already  be in the correct format but in the other datasets or custom datasets, make sure it follows the following structure:
+- First need to extract data from the .bag files(for SCAND).
+
+- Run process_bags.py with the relevant args, or process_recon.py for processing RECON HDF5s.
+
+- If you have downloaded the sacson and go_stanford dataset,they will already  be in the correct format but in the other datasets or custom datasets, make sure it follows the following structure:
+- 
 ├── <dataset_name>
 │   ├── <name_of_traj1>
 │   │   ├── 0.jpg
@@ -118,7 +121,7 @@ If you have downloaded the sacson and go_stanford dataset,  wthey will already  
 
 
 
-Then, split the extracted data into train and test set. Default ratio is 80-20.
+- Then, split the extracted data into train and test set. Default ratio is 80-20.
 
 Run the following for example:
 ```bash
