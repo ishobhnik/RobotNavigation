@@ -243,7 +243,17 @@ For Training:
 - NoMaD ![gc_action_train_nomad](https://github.com/user-attachments/assets/94482246-2ce4-425b-a33e-d87396a4a158)
 For Test:
 -ViNT ![action_test_vint](https://github.com/user-attachments/assets/cf5cc286-39d1-4c26-8a2b-f26df0a288ce)
--NoMaD ![Uploading gc_action_test_nomad.png…]()
+-NoMaD ![gc_action_test_nomad](https://github.com/user-attachments/assets/df87ecf4-69cd-4cf5-9c9a-17436ad893bc)
+
+
+#### Multi-action waypts cosine similarity
+For train:
+- ViNT ![multiaction_train_vint](https://github.com/user-attachments/assets/4c80c311-ed25-474a-ab9b-afc45e34885f)
+- NoMaD ![multiaction_train_nomad](https://github.com/user-attachments/assets/47f97940-cc2a-412c-9067-41cab18ab905)
+For test:
+-ViNT ![multiaction_test_vint](https://github.com/user-attachments/assets/2a092199-7f53-4ebb-a771-e2d160be0e09)
+-NoMaD ![multiaction_test_nomad](https://github.com/user-attachments/assets/30d12d95-fc20-4242-957c-5f4740f99041)
+
 
 
 
