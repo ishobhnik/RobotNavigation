@@ -1,8 +1,8 @@
 ## Authors
 - [Abhishek Kumar Jha](https://github.com/abhi-abhi-101)
+- [Namashivaaya V.](https://github.com/NamashivayaaV)
 - [Shobhnik Kriplani](https://github.com/ishobhnik)
 - [Sehaj Ganjoo](https://github.com/Aureola21)
-- [Namashivaaya V.](https://github.com/NamashivayaaV)
 
 ## **NoMaD: Navigation with Goal-Masked Diffusion** 
 
